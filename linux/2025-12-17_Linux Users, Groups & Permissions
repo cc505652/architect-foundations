@@ -1,0 +1,218 @@
+## Objective
+
+Understand how Linux controls access using users, groups, and permissions, and how misconfiguration can lead to security issues.
+
+## Scenario
+
+Created separate users and groups to simulate role-based access.
+
+## Why groups matter
+
+Groups allow scalable permission management instead of per-user rules.
+
+## Permission model
+
+- Owner: full access
+- Group: controlled access
+- Others: restricted
+
+---
+
+## Users & Groups
+
+### adduser
+
+Creates a new user account with a home directory and default settings.
+
+```bash
+sudo adduser devuser
+sudo adduser audituser
+```
+
+**Why:** Simulates different roles in a system (developer vs auditor).
+
+**Risk if misused:** Unnecessary users increase attack surface.
+
+### groupadd
+
+Creates a new group.
+
+```bash
+sudo groupadd developers
+sudo groupadd auditors
+
+```
+
+**Why:** Groups allow scalable permission management.
+
+**Risk if misused:** Poor group design leads to excessive access.
+
+### usermod
+
+Adds users to groups.
+
+```bash
+sudo usermod -aG developers devuser
+sudo usermod -aG auditors audituser
+
+```
+
+**Why:** Assigns role-based access without changing file ownership.
+
+**Risk if misused:** Wrong group assignment = privilege escalation.
+
+### id
+
+Displays user and group membership.
+
+```bash
+id devuser
+id audituser
+
+```
+
+**Why:** Verifies access model correctness.
+
+## Permissions Model
+
+### mkdir
+
+Creates directories.
+
+```bash
+mkdir ~/secure-data
+
+```
+
+### chown
+
+Changes ownership of files/directories.
+
+```bash
+sudochown devuser:developers ~/secure-data
+
+```
+
+**Why:** Ensures only intended users control sensitive directories.
+
+**Risk if misused:** Incorrect ownership can expose or lock out data.
+
+### chmod
+
+Changes permissions.
+
+```bash
+chmod 750 ~/secure-data
+
+```
+
+**Meaning:**
+
+- Owner: full access
+- Group: read & execute
+- Others: no access
+
+**Why:** Restricts access to authorized roles only.
+
+**Risk if misused:** `777` permissions expose data to all users.
+
+1. **First digit:** Permissions for the **owner** (user) of the file.
+2. **Second digit:** Permissions for the **group** that owns the file.
+3. **Third digit:** Permissions for **others** (everyone else)
+
+| **Number** | **Permission String** | **Description** |
+| --- | --- | --- |
+| **0** | `---` | No permissions |
+| **1** | `--x` | Execute only |
+| **2** | `-w-` | Write only |
+| **3** | `-wx` | Write and execute (2+1) |
+| **4** | `r--` | Read only |
+| **5** | `r-x` | Read and execute (4+1) |
+| **6** | `rw-` | Read and write (4+2) |
+| **7** | `rwx` | Read, write, and execute (4+2+1) |
+
+### su
+
+Switches user context.
+
+```bash
+su devuser
+cd /home/<username>/secure-data
+
+```
+
+```bash
+su audituser
+cd /home/<username>/secure-data
+
+```
+
+**Why:** Tests access boundaries in real conditions.
+
+## Root Home Directory Rule
+
+- `/root` is private to the root user.
+- Even if files inside are owned by other users, access is blocked.
+- Linux checks parent directory permissions first.
+- Shared application data should NEVER live in `/root`.
+
+## Best Practice
+
+Use `/srv`, `/opt`, or `/var` for shared or application data.
+
+### Create a proper shared directory
+
+```bash
+sudomkdir -p /srv/secure-data
+
+```
+
+---
+
+### Assign ownership and permissions
+
+```bash
+sudochown devuser:developers /srv/secure-data
+sudochmod 750 /srv/secure-data
+
+```
+
+## Simulated Application Structure
+
+### Creating role-based directories
+
+```bash
+sudomkdir /opt/app
+sudomkdir /var/lib/db
+sudomkdir /var/log/app
+
+```
+
+---
+
+### Assigning ownership and permissions
+
+```bash
+sudochown appuser:developers /opt/app
+sudochown dbuser:auditors /var/lib/db
+sudochown root:root /var/log/app
+
+chmod 750 /opt/app
+chmod 700 /var/lib/db
+chmod 750 /var/log/app
+
+```
+
+**Design rationale:**
+
+- App code: accessible only to app role
+- Database: highly restricted
+- Logs: readable but protected
+
+## Key Security Takeaways
+
+- Users represent identities; groups represent roles.
+- Permissions enforce least privilege.
+- Most real-world breaches involve permission misconfiguration.
+- Access control must be tested, not assumed.
+- Incorrect permissions are one of the most common causes of breaches.
