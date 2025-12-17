@@ -1,0 +1,18 @@
+## OSI Model (Practical View)
+
+- Layer 7 (Application): HTTP, HTTPS, SSH
+- Layer 4 (Transport): TCP, UDP
+- Layer 3 (Network): IP addressing and routing
+- Layer 2 (Data Link): MAC addresses
+- Layer 1 (Physical): Hardware and signals
+
+## Commands Used
+
+- ip a - Displays network interfaces and IP addresses
+- ip route - Shows the routing table and default gateway
+- ping - Tests network connectivity by sending ICMP echo requests
+- traceroute - Displays the path packets take to reach a destination
+
+## Key Takeaway
+
+Data flows top-down (application to wire) and bottom-up on receive. Security can be applied at multiple layers.
