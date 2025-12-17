@@ -1,39 +1,39 @@
 # Daily Log — Dec 16, 2025
 
 ## Focus
-Linux filesystem, package management, OSI model & networking fundamentals.
+Linux filesystem fundamentals, package management, OSI model, and basic networking commands.
 
 ---
 
 ## Key Learnings
 
 **Linux**
-- The Linux filesystem (`/`, `/etc`, `/var`, `/home`) separates configuration, logs, and user data.  
-- Package management (`apt`) centralizes software installation and upgrades.
+- The Linux filesystem hierarchy avoids mixing config, logs, and data.
+- Package management (`apt`) centralizes install/upgrade.
+- Understanding directories helps anticipate where security policies should apply.
 
 **Networking**
-- OSI model maps real-world protocols to abstraction layers for diagnostics.  
-- Tools (`ip a`, `ping`, `traceroute`) reveal host state and path hops.
+- OSI model provides mental mapping from application protocols to physical connectivity.
+- Commands like `ip a`, `ping`, and `traceroute` reveal host and path state.
 
 ---
 
 ## Risks & Security Implications
 
-- Misconfigured `/etc` scripts can break system services.
-- Unpatched packages expose CVEs.
-- Unfiltered network paths can be exploited at multiple OSI layers.
+- Misconfiguring files in `/etc` can break services or open attack surface.
+- Unrestricted ports/services can be probed and exploited.
+- Lack of process awareness increases incident response time.
 
 ---
 
 ## Defenses Applied
 
-- Practiced directory exploration with awareness of sensitive locations.
-- Reviewed potential attack surfaces in network path discovery.
+- Practiced accessing key directories and identifying appropriate permission domains.
+- Observed path behavior and routing fundamentals.
 
 ---
 
 ## Tradeoffs
 
-- Deep understanding vs. speed of learning — chose depth.
-- Observability (`logs`) vs. performance overhead.
-
+- Restrictive permissions increase security but may impede legitimate administration if too tight.
+- Monitoring consumes resources but improves visibility.
