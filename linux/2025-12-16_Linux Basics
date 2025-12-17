@@ -78,3 +78,8 @@ Installed tools:
 ## Key Takeaway
 
 Linux package management is centralized and reliable. File operations are simple but powerful.
+
+### Why this matters
+- Misconfigured FS can leak secrets
+- Poor permissions expose services
+
