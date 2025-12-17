@@ -1,0 +1,39 @@
+# Daily Log — Dec 16, 2025
+
+## Focus
+Linux filesystem, package management, OSI model & networking fundamentals.
+
+---
+
+## Key Learnings
+
+**Linux**
+- The Linux filesystem (`/`, `/etc`, `/var`, `/home`) separates configuration, logs, and user data.  
+- Package management (`apt`) centralizes software installation and upgrades.
+
+**Networking**
+- OSI model maps real-world protocols to abstraction layers for diagnostics.  
+- Tools (`ip a`, `ping`, `traceroute`) reveal host state and path hops.
+
+---
+
+## Risks & Security Implications
+
+- Misconfigured `/etc` scripts can break system services.
+- Unpatched packages expose CVEs.
+- Unfiltered network paths can be exploited at multiple OSI layers.
+
+---
+
+## Defenses Applied
+
+- Practiced directory exploration with awareness of sensitive locations.
+- Reviewed potential attack surfaces in network path discovery.
+
+---
+
+## Tradeoffs
+
+- Deep understanding vs. speed of learning — chose depth.
+- Observability (`logs`) vs. performance overhead.
+
