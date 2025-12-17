@@ -1,25 +1,40 @@
+# Daily Log — Dec 17, 2025
+
 ## Focus
-Linux access control + TCP vs UDP tradeoffs
+Linux users/groups + permissions; TCP vs UDP tradeoffs.
+
+---
 
 ## Key Learnings
 
-- Linux user groups enable scalable access policies
-- TCP is reliable, UDP is fast — but the security tradeoffs matter
-- Permissions must be reviewed as part of system hardening
+**Linux Access Control**
+- Users and groups enable granular access policies.
+- Permissions determine read/write/execute at owner/group/other levels.
+- Access control prevents unauthorized actions.
 
-## What Could Go Wrong?
+**Networking Protocols**
+- TCP provides connection reliability and sequencing.
+- UDP offers simpler, faster datagrams without guarantees.
+- The choice affects performance and attack surface.
 
-- Overly permissive ACLs
-- Misassigned groups
-- Unfiltered TCP services
+---
 
-## How to Defend
+## Risks & Security Implications
 
-- Least privilege
-- Group-centric access
-- Firewall + service hardening
+- Overly permissive ACLs allow lateral movement and data theft.
+- Unrestricted TCP services increase exposure to session attacks.
+
+---
+
+## Defenses Applied
+
+- Created dedicated users and groups for roles.
+- Set appropriate ownership and permissions for directories.
+- Compared TCP/UDP tradeoffs for service exposure.
+
+---
 
 ## Tradeoffs
 
-- Granular permissions vs admin overhead
-- TCP reliability vs UDP performance
+- Granular permissions vs. admin overhead.
+- Reliability vs. performance.
