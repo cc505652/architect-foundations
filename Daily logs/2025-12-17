@@ -1,0 +1,21 @@
+### What I learned
+
+- Role-based access using users and groups
+- Permission models and real risks
+- Practical TCP vs UDP tradeoffs
+
+### What could go wrong?
+
+- Excessive permissions expose sensitive data
+- Wrong protocol choice affects reliability and security
+
+### How I would defend it
+
+- Least privilege
+- Clear role separation
+- Firewall rules aligned to protocol behavior
+
+### Tradeoffs
+
+- Security vs operational convenience
+- Performance vs reliability
