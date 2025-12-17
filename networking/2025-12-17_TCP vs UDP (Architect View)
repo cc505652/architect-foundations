@@ -1,0 +1,53 @@
+| Aspect | TCP | UDP |
+| --- | --- | --- |
+| Reliability | Guaranteed | Best effort |
+| Speed | Slower | Faster |
+| Order | Preserved | Not guaranteed |
+| Use cases | Web, SSH, Email | DNS, VoIP, Streaming |
+| Security risk | Session hijacking | Spoofing |
+
+Displays active sockets.
+
+```bash
+ss -tulnp
+```
+
+### netstat
+
+Legacy networking statistics tool.
+
+```bash
+netstat -tulnp
+
+```
+
+**Why:** Shows which services rely on TCP vs UDP in real systems.
+
+## Architectural Decisions
+
+### Why SSH uses TCP
+
+- Needs reliability
+- Command order matters
+- Session integrity required
+
+### Why DNS uses UDP
+
+- Speed is critical
+- Small payloads
+- Retries handled at application level
+
+---
+
+## Security Implications
+
+- TCP attacks: session hijacking, SYN floods
+- UDP attacks: spoofing, amplification attacks
+- Firewalls must treat them differently
+
+---
+
+## Key Takeaways
+
+- Protocol choice affects performance, reliability, and security.
+- Architects choose protocols based on business and risk tradeoffs.
