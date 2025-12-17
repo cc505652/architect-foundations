@@ -2,44 +2,44 @@
 
 A structured, hands-on journey toward a **Cloud + Security Architect** profile.
 
-This repository contains:
-- Linux system fundamentals with access control
-- Networking fundamentals with architecture context
-- Daily reflections focused on security reasoning
-- (Planned) Cloud infrastructure design projects
+This repository captures:
+- Linux fundamentals and secure system hardening
+- Networking fundamentals with security context
+- Daily reflections focusing on risks, defenses, and tradeoffs
+- (Upcoming) Cloud infrastructure projects and architecture designs
 
 ---
 
 ## 📂 Folder Overview
 
 ### 📁 linux/
-Linux concepts applied to secure systems and access control.
+Focused Linux topics with security implications and applied hardening.
 
 ### 📁 networking/
-Networking basics with architecture-level thinking.
+Networking fundamentals with OSI model, protocols, and risk analysis.
 
 ### 📁 daily-logs/
-Daily reflections capturing key learnings, risk analysis, and tradeoffs.
+Daily reflections capturing conceptual understanding, risks, defenses, and tradeoffs.
 
 ### 📁 diagrams/
-Architecture sketches for projects (to be added with project work).
+Architecture sketches and project designs (to be added).
 
 ---
 
 ## 🧠 Learning Methodology
 
-For every fundamental topic:
-1. Learn the core concept
+For every seeded concept:
+1. Learn core ideas
 2. Apply hands-on
-3. Document real outcomes
-4. Reflect on architectural security implications
+3. Document real behavior
+4. Reflect on security implications and architectural tradeoffs
 
-This transforms knowledge into **design maturity**.
+This transforms raw knowledge into **design-grade maturity**.
 
 ---
 
-## 🚀 How to Use This Repo
+## 📌 How to Explore
 
-1. Explore `daily-logs/` for mindset & tradeoff notes.
-2. Dive into `linux/` and `networking/` for topic details.
-3. Future clouds & project diagrams will be added in `diagrams/`.
+1. Read daily logs (`daily-logs/`) for mindset & risk reasoning.
+2. Review topic modules (`linux/`, `networking/`) for detailed outputs.
+3. Diagrams will support project framing once cloud projects begin.
