@@ -1,21 +1,25 @@
-### What I learned
+## Focus
+Linux access control + TCP vs UDP tradeoffs
 
-- Role-based access using users and groups
-- Permission models and real risks
-- Practical TCP vs UDP tradeoffs
+## Key Learnings
 
-### What could go wrong?
+- Linux user groups enable scalable access policies
+- TCP is reliable, UDP is fast — but the security tradeoffs matter
+- Permissions must be reviewed as part of system hardening
 
-- Excessive permissions expose sensitive data
-- Wrong protocol choice affects reliability and security
+## What Could Go Wrong?
 
-### How I would defend it
+- Overly permissive ACLs
+- Misassigned groups
+- Unfiltered TCP services
+
+## How to Defend
 
 - Least privilege
-- Clear role separation
-- Firewall rules aligned to protocol behavior
+- Group-centric access
+- Firewall + service hardening
 
-### Tradeoffs
+## Tradeoffs
 
-- Security vs operational convenience
-- Performance vs reliability
+- Granular permissions vs admin overhead
+- TCP reliability vs UDP performance
