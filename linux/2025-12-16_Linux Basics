@@ -1,0 +1,80 @@
+# Dec 16 – Linux Basics
+
+## Linux Filesystem Overview
+
+### /
+
+Root of the filesystem. Everything starts here.
+
+### /home
+
+User directories live here. Each user gets their own space.
+
+### /etc
+
+System-wide configuration files. Critical for system behavior.
+
+### /var
+
+Variable data like logs, caches, spools.
+
+### /var/log
+
+System and application logs. Key for debugging and security.
+
+### /whoami
+
+Displays the currently logged-in user.
+
+## Commands Used
+
+- ls - Lists files and directories in the current directory
+- cd -  Changes the current working directory
+- pwd - Prints the full path of the current working directory
+
+## Key Takeaway
+
+Linux is structured logically. Configuration, logs, and user data are separated for stability and security.
+
+## Package Management
+
+- apt update: updates package index
+- apt upgrade: upgrades installed packages
+- apt install: installs software
+
+Installed tools:
+
+- tree - Displays directory structure in a tree format
+- htop - Interactive process viewer showing CPU, memory, and running processes
+- net-tools - Collection of legacy networking tools (e.g., ifconfig, netstat)
+
+## File Operations Practiced
+
+- touch - Creates an empty file
+    
+    # touch file1.txt file2.txt 
+    
+- echo - Writes text into a file (overwrites existing content)
+    
+    # echo "Hello Linux" > file1.txt
+    
+- cat - Displays the contents of a file
+    
+    # cat file1.txt
+    
+- cp - Copies a file from source to destination
+    
+    # cp file1.txt copy_file1.txt
+    
+- mv - Moves or renames a file or directory
+    
+    # mv file2.txt renamed_file2.txt
+    
+- rm - Deletes a file
+    
+    # rm copy_file1.txt
+    
+
+## Key Takeaway
+
+Linux package management is centralized and reliable. File operations are simple but powerful.
