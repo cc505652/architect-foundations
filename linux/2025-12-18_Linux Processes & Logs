@@ -1,0 +1,172 @@
+# Dec 18 – Linux Processes & Logs
+
+## Objective
+
+Understand how Linux manages running programs and how logs provide visibility into system behavior and security events.
+
+---
+
+## Process Management
+
+## What is a process?
+
+A process is a running instance of a program managed by the kernel.
+
+## Why process visibility matters
+
+- Malware runs as processes
+- Runaway processes cause outages
+- Incident response starts by identifying abnormal processes
+
+## Signals
+
+- SIGTERM: graceful shutdown
+- SIGKILL: force stop (last resort)
+
+## Architect Insight
+
+Lack of process visibility delays detection and recovery.
+
+### ps
+
+Displays currently running processes.
+
+```bash
+ps aux
+
+```
+
+**Why:**
+
+Provides a snapshot of all active processes.
+
+**Risk if misused:**
+
+Killing critical processes can crash services.
+
+### top
+
+Real-time process monitoring.
+
+```bash
+top
+```
+
+**Why:** Identifies CPU and memory-heavy processes.
+
+**Risk if misused:** Misinterpreting spikes without context.
+
+---
+
+### htop
+
+Enhanced interactive process viewer.
+
+```bash
+htop
+```
+
+**Why:** Easier visualization for debugging performance issues.
+
+---
+
+### kill
+
+Terminates a process by PID.
+
+```bash
+kill <PID>
+```
+
+Force kill:
+
+```bash
+kill -9 <PID>
+```
+
+**Why:** Stops misbehaving or compromised processes.
+
+**Risk if misused:** Data loss or service outage.
+
+---
+
+## System Logs
+
+### Viewing log directories
+
+```bash
+ls /var/log
+```
+
+---
+
+### auth.log
+
+Authentication-related logs.
+
+```bash
+sudocat /var/log/auth.log
+```
+
+**Why:** Detects failed logins, sudo usage, SSH access.
+
+---
+
+### syslog
+
+General system events.
+
+```bash
+sudocat /var/log/syslog
+```
+
+**Why:** Helps trace crashes and system issues.
+
+---
+
+### journalctl
+
+Systemd journal viewer.
+
+```bash
+journalctl
+journalctl -xe
+```
+
+**Why:** Centralized log access for modern Linux systems.
+
+---
+
+## Log Monitoring
+
+### tail
+
+View latest log entries.
+
+```bash
+sudotail -n 20 /var/log/auth.log
+
+```
+
+**Why:** Used during live incident investigation.
+
+---
+
+### Important Logs
+
+- /var/log/syslog: system events
+- /var/log/auth.log: authentication activity
+
+## Why logs matter
+
+Logs provide a timeline of events for debugging and incident response.
+
+## Security Insight
+
+Without logs, breaches can go undetected for months.
+
+## Key Takeaways
+
+- Processes show what the system is doing *now*.
+- Logs show what happened *over time*.
+- Incident response always starts with logs.
