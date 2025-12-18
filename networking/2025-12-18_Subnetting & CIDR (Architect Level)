@@ -1,0 +1,73 @@
+# Dec 18 – Subnetting & CIDR (Architect Level)
+
+## Objective
+
+Understand how IP address space is divided and why subnetting is critical for security, scalability, and cost control.
+
+---
+
+## What is CIDR?
+
+CIDR defines how many bits are used for the network vs hosts.
+
+## CIDR Basics
+
+### CIDR Notation
+
+- /24 → 256 IPs
+- /25 → 128 IPs
+- /26 → 64 IPs
+- /27 → 32 IPs
+- /28 → 16 IPs
+
+**Why:** Efficient IP usage and isolation.
+
+---
+
+## Subnetting Example
+
+### Scenario
+
+A company needs:
+
+- Public subnet (web)
+- Private subnet (app)
+- Restricted subnet (db)
+
+Base network:
+
+```
+10.0.0.0/24
+Subnet breakdown:
+
+Public: 10.0.0.0/26
+
+App: 10.0.0.64/26
+
+DB: 10.0.0.128/26
+
+Why Subnetting Matters
+Limits blast radius
+
+Enables firewall zoning
+
+Improves routing clarity
+
+Supports least privilege networking
+
+Common Mistakes
+Flat networks (/24 everywhere)
+
+Overlapping CIDRs
+
+No separation between public and private assets
+
+Key Takeaways
+Subnetting is not math — it’s risk management.
+```
+
+## Why subnetting matters in cloud
+
+- Public vs private isolation
+- Blast radius control
+- Cost & routing efficiency
