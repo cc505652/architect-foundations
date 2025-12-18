@@ -1,0 +1,28 @@
+# Daily Log – Dec 18
+
+## Focus
+
+Linux processes & logs, subnetting and CIDR.
+
+## Key Learnings
+
+- Processes reveal system behavior
+- Logs provide incident timelines
+- Subnets control exposure and blast radius
+
+## What Could Go Wrong?
+
+- Malicious processes running unnoticed
+- Brute-force attacks hidden in auth logs
+- Flat networks enabling lateral movement
+
+## How to Defend
+
+- Monitor processes
+- Centralize logs
+- Segment networks with subnets
+
+## Tradeoffs
+
+- Logging vs storage cost
+- Segmentation vs operational complexity
