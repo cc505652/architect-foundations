@@ -1,0 +1,138 @@
+## Objective
+
+Understand how Linux manages long-running services and why service control is critical for availability and security.
+
+---
+
+## What is a Service?
+
+A service is a background process designed to run continuously (e.g., SSH, web servers, databases).
+
+Linux uses **systemd** to manage services.
+
+---
+
+## Service Management
+
+### systemctl status
+
+Checks the current state of a service.
+
+```bash
+systemctl status ssh
+```
+
+**Why:** Confirms whether a service is running, stopped, or failed.
+
+**Risk if ignored:** Failed services can silently break systems.
+
+---
+
+### systemctl start
+
+Starts a service.
+
+```bash
+sudo systemctl start ssh
+```
+
+**Why:** Manually bring services online.
+
+---
+
+### systemctl stop
+
+Stops a service.
+
+```bash
+sudo systemctl stop ssh
+```
+
+**Why:** Used during maintenance or incident response.
+
+**Risk:** Stopping critical services causes downtime.
+
+---
+
+### systemctl restart
+
+Restarts a service.
+
+```bash
+sudo systemctl restart ssh
+```
+
+**Why:** Applies config changes safely.
+
+---
+
+### systemctl enable
+
+Ensures service starts at boot.
+
+```bash
+sudo systemctlenable ssh
+```
+
+**Why:** Guarantees persistence after reboot.
+
+**Risk:** Enabling unnecessary services increases attack surface.
+
+---
+
+### systemctl disable
+
+Prevents service from starting at boot.
+
+```bash
+sudo systemctldisable ssh
+```
+
+**Why:** Reduces exposure when service isn’t required.
+
+---
+
+## Listing Services
+
+### systemctl list-units
+
+```bash
+systemctl list-units --type=service
+```
+
+**Why:** Shows all active services.
+
+---
+
+### systemctl list-unit-files
+
+```bash
+systemctl list-unit-files --type=service
+```
+
+**Why:** Shows which services are enabled or disabled at boot.
+
+---
+
+## Security Insight
+
+Every enabled service is a potential entry point.
+
+Architects minimize **what runs**, not just secure what runs.
+
+## Failure Simulation
+
+Stopped cron service intentionally.
+
+### Observations
+
+- Service status changed immediately
+- Logs recorded stop/start events
+
+### Why this matters
+
+In incidents, knowing what service failed and why saves time.
+
+### Recovery
+
+Restarted service via systemctl.
