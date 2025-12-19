@@ -1,0 +1,96 @@
+## Objective
+
+Understand how private networks access the internet and why gateways are critical control points.
+
+---
+
+## What is a Gateway?
+
+A gateway is the device that routes traffic from a local network to external networks.
+
+Usually:
+
+- Router
+- Firewall
+- Cloud NAT device
+
+## Default Gateway
+
+All non-local traffic is sent to the default gateway.
+
+Run:
+
+```bash
+ip route
+```
+
+You’ll see something like:
+
+```
+default via172.x.x.1 dev eth0
+```
+
+## Why gateways matter
+
+Without a gateway, systems cannot reach external networks.
+
+---
+
+## Network Address Translation (NAT)
+
+### Why NAT Exists
+
+- Conserves IPv4 addresses
+- Hides internal IP structure
+- Acts as a basic security boundary
+
+---
+
+## NAT Flow (Conceptual)
+
+Client (Private IP) → Gateway (NAT) → Internet
+
+Internet → Gateway → Client
+
+Internal IPs are **not visible** externally.
+
+---
+
+## Types of NAT
+
+### SNAT (Source NAT)
+
+- Internal → External traffic
+- Changes source IP
+
+### DNAT (Destination NAT)
+
+- External → Internal traffic
+- Used for port forwarding
+
+---
+
+## Security Implications
+
+- NAT hides internal topology
+- NAT alone is NOT a firewall
+- Firewalls must still control traffic
+
+---
+
+## Architect View
+
+- Gateways are choke points
+- Logging at gateways is critical
+- In cloud, NAT = managed service
+
+In cloud:
+
+- Internet Gateway enables external access
+- NAT Gateway enables private subnet outbound access
+
+---
+
+## Key Takeaway
+
+If you control the gateway, you control the network’s exposure.
