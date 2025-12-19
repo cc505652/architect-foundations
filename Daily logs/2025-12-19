@@ -1,0 +1,27 @@
+## Focus
+
+systemd services, service failure simulation, gateways and NAT.
+
+## Key Learnings
+
+- Services define system availability
+- systemd manages lifecycle and recovery
+- Gateways control external reachability
+- NAT enables private networks to access the internet
+
+## What Could Go Wrong?
+
+- Critical services stopped accidentally
+- No gateway → no connectivity
+- Misconfigured NAT → broken outbound traffic
+
+## How to Defend
+
+- Monitor service status
+- Enable critical services at boot
+- Design proper gateway/NAT placement
+
+## Tradeoffs
+
+- Automation vs manual control
+- Isolation vs connectivity
