@@ -1,0 +1,28 @@
+# Daily Log – Dec 20
+
+### Focus
+
+SSH hardening, firewall rules, and access control.
+
+## Key Learnings
+
+- SSH is a high-risk access vector
+- Firewalls must be explicit and intentional
+- Default deny is safer than default allow
+
+## What Could Go Wrong?
+
+- SSH misconfiguration locking out admins
+- Firewall blocking critical services
+- Overconfidence in perimeter defenses
+
+## How to Defend
+
+- Test access after every change
+- Layer security (keys + firewall)
+- Monitor exposed ports regularly
+
+## Tradeoffs
+
+- Security vs convenience
+- Restriction vs operational flexibility
