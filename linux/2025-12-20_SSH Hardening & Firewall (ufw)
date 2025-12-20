@@ -1,0 +1,151 @@
+## Objective
+
+Secure remote access to a Linux system and control network exposure using firewall rules.
+
+---
+
+## SSH Hardening
+
+### Step 1: Check SSH status
+
+```bash
+sudo systemctl status ssh
+
+```
+
+**Why:** Confirm SSH is running before modifying it.
+
+### Step 2: Backup SSH configuration
+
+```bash
+sudocp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+
+```
+
+**Why:** Allows rollback if configuration breaks SSH access.
+
+### Step 3: Edit SSH configuration
+
+```bash
+sudo nano /etc/ssh/sshd_config
+
+```
+
+Make the following changes (or ensure they exist):
+
+```
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+MaxAuthTries 3
+
+```
+
+**Why:**
+
+- Disable root login → removes high-value target
+- Disable passwords → prevents brute-force attacks
+- Limit auth attempts → slows attackers
+
+**Risk if misused:** Incorrect config can lock you out of the system.
+
+### Step 4: Restart SSH safely
+
+```bash
+sudo systemctl restart ssh
+```
+
+Immediately test:
+
+```bash
+ssh localhost
+```
+
+## Firewall Configuration (ufw)
+
+### Step 5: Check firewall status
+
+```bash
+sudo ufw status
+```
+
+---
+
+### Step 6: Set default policies
+
+```bash
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+```
+
+**Why:**
+
+- Incoming traffic is blocked by default
+- Outgoing traffic is allowed (controlled egress later)
+
+---
+
+### Step 7: Allow SSH explicitly
+
+```bash
+sudo ufw allow ssh
+```
+
+or
+
+```bash
+sudo ufw allow 22/tcp
+```
+
+**Why:**
+
+Only SSH is allowed — nothing else.
+
+---
+
+### Step 8: Enable firewall
+
+```bash
+sudo ufwenable
+```
+
+Verify:
+
+```bash
+sudo ufw status verbose
+```
+
+---
+
+## Testing Exposure
+
+### Check listening services
+
+```bash
+ss -tulnp
+```
+
+Confirm:
+
+- SSH is allowed
+- No unexpected services exposed
+
+---
+
+## Current Security Posture
+
+- SSH: enabled, hardened
+- Firewall: enabled, default deny
+- Exposed services: minimal
+
+## Remaining Attack Surface
+
+- SSH key theft
+- Kernel vulnerabilities
+- Misconfigurations over time
+
+## Key Security Takeaways
+
+- SSH must be hardened before exposure
+- Default-deny is the safest firewall posture
+- Every open port is a potential attack surface
