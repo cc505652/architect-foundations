@@ -1,0 +1,67 @@
+## Objective
+
+Understand how different firewall models track traffic and how this maps to real architectures.
+
+---
+
+## Stateful Firewalls
+
+### Characteristics
+
+- Track connection state
+- Automatically allow return traffic
+- Simpler rule sets
+
+### Example
+
+Linux ufw, AWS Security Groups
+
+**Architect Impact:**
+
+- Easier to manage
+- Safer defaults
+- Preferred for most application layers
+
+---
+
+## Stateless Firewalls
+
+### Characteristics
+
+- No connection tracking
+- Explicit inbound and outbound rules
+- More granular, more complex
+
+### Example
+
+Router ACLs, AWS Network ACLs
+
+**Architect Impact:**
+
+- Used at network boundaries
+- High performance
+- Easy to misconfigure
+
+---
+
+## Comparison
+
+| Aspect | Stateful | Stateless |
+| --- | --- | --- |
+| Tracks sessions | Yes | No |
+| Rule complexity | Lower | Higher |
+| Typical use | Hosts, apps | Network edge |
+| Risk | Hidden trust | Human error |
+
+---
+
+## Architect Mapping
+
+- Linux `ufw` → AWS Security Groups
+- Router ACLs → AWS NACLs
+
+---
+
+## Key Takeaway
+
+Use stateful controls close to applications, stateless controls at the network edge.
