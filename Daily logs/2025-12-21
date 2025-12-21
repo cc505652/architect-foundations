@@ -1,0 +1,38 @@
+## Focus
+
+Linux hardening consolidation and security posture review.
+
+### What I built
+
+- A hardened Linux host with minimal exposure
+- Clear mapping between threats and defenses
+
+## Key Learnings
+
+- Hardening is layered, not one setting
+- Security posture must be reviewed, not assumed
+- Documentation turns actions into design
+
+## What Could Go Wrong?
+
+- Drift from secure configuration
+- Unmonitored access changes
+- False sense of security
+- Zero-day exploits
+- Insider misuse
+- Misconfiguration during future changes
+
+## How to Defend
+
+- Periodic reviews
+- Change tracking
+- Minimal exposure
+- Intrusion detection
+- Centralized logging
+- Regular audits
+
+## Tradeoffs
+
+- Security rigor vs admin convenience
+- Security vs convenience
+- Minimal exposure vs operational flexibility
