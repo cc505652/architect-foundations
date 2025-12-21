@@ -1,0 +1,247 @@
+## Objective
+
+Consolidate Linux security fundamentals into a single hardened host design with clear threat reasoning.
+
+---
+
+## 1. User & Access Review
+
+### List users
+
+```bash
+cut -d: -f1 /etc/passwd
+```
+
+**Why:** Identify all system and human users.
+
+**Risk if ignored:** Orphaned users become backdoors.
+
+### Review sudo access
+
+```bash
+sudo getent groupsudo
+
+```
+
+**Why:** Only trusted users should have administrative rights.
+
+---
+
+## 2. SSH Security Validation
+
+### Confirm SSH configuration
+
+```bash
+sudo grep -E"PermitRootLogin|PasswordAuthentication|MaxAuthTries" /etc/ssh/sshd_config
+
+```
+
+Expected:
+
+- `PermitRootLogin no`
+- `PasswordAuthentication no`
+- `MaxAuthTries 3`
+
+---
+
+### Check SSH exposure
+
+```bash
+ss -tulnp | grep ssh
+
+```
+
+**Why:** Verify SSH is the only exposed service.
+
+---
+
+## 3. Firewall Audit
+
+### View active rules
+
+```bash
+sudo ufw status verbose
+
+```
+
+Expected:
+
+- Default deny incoming
+- SSH allowed
+- Everything else blocked
+
+---
+
+## 4. Service Minimization
+
+### List running services
+
+```bash
+systemctl list-units --type=service --state=running
+
+```
+
+### Disable unnecessary services (example)
+
+```bash
+sudo systemctldisable bluetooth
+sudo systemctl stop bluetooth
+
+```
+
+**Why:** Every running service increases attack surface.
+
+**Risk if misused:** Disabling critical services causes outages.
+
+---
+
+## 5. Process Visibility
+
+### Identify top resource consumers
+
+```bash
+htop
+
+```
+
+**Why:** Malware often reveals itself through abnormal resource usage.
+
+---
+
+## 6. Log Visibility Check
+
+### Authentication events
+
+```bash
+sudotail -n 50 /var/log/auth.log
+
+```
+
+### System events
+
+```bash
+sudo journalctl -p warning
+
+```
+
+**Why:** Logs are your forensic timeline.
+
+---
+
+## 7. Final Exposure Review
+
+### All listening ports
+
+```bash
+ss -tulnp
+
+```
+
+Expected result:
+
+- SSH only
+- No unexpected listeners
+
+---
+
+# Week 1 – Linux System Hardening Review
+
+## System Overview
+
+- OS: Ubuntu 22.04 LTS
+- Access: SSH (key-based)
+- Firewall: Enabled (default deny)
+
+---
+
+## Access Control
+
+- Root login disabled
+- Password authentication disabled
+- Role-based users and groups applied
+
+### Why this matters
+
+Prevents brute-force attacks and limits privilege escalation.
+
+---
+
+## Service Management
+
+- SSH enabled and monitored
+- Unnecessary services disabled
+
+### Why this matters
+
+Reduces attack surface and improves availability control.
+
+---
+
+## Network Exposure
+
+- Firewall allows only required inbound traffic
+- No unnecessary open ports
+
+### Why this matters
+
+Minimizes external attack vectors.
+
+---
+
+## Logging & Visibility
+
+- Authentication logs monitored
+- System logs available for incident response
+
+### Why this matters
+
+Enables detection and forensic analysis.
+
+---
+
+## Residual Risks
+
+- Kernel vulnerabilities
+- SSH key compromise
+- Misconfiguration over time
+
+---
+
+## Overall Security Posture
+
+This system is reasonably hardened for a small production workload, with layered defenses and minimal exposure.
+
+## Threat Model (Basic)
+
+### Threats Considered
+
+- SSH brute force
+- Unauthorized access
+- Service misuse
+- Network scanning
+
+### Mitigations Applied
+
+- SSH hardening
+- Firewall default deny
+- Role separation
+- Logging and monitoring
+
+### Tradeoffs
+
+- Increased setup complexity
+- Reduced convenience for administrators
+
+## Final Hardening Summary
+
+- SSH hardened (key-only, no root, limited retries)
+- Firewall enforcing least privilege
+- Unused services disabled
+- Users and privileges reviewed
+- Logs accessible and monitored
+
+---
+
+## Key Takeaway
+
+Security is not one control — it is the absence of unnecessary ones.
