@@ -1,0 +1,61 @@
+## Objective
+
+Map realistic attack paths to specific defenses on a Linux server.
+
+---
+
+## Threat Model
+
+### 1. Brute-force SSH Attack
+
+**Defense:**
+
+- PasswordAuthentication disabled
+- MaxAuthTries limited
+- Firewall restricts exposure
+
+---
+
+### 2. Exploitation of Exposed Services
+
+**Defense:**
+
+- Only SSH exposed
+- Unused services disabled
+
+---
+
+### 3. Privilege Escalation
+
+**Defense:**
+
+- Limited sudo users
+- Role-based access
+- File permission controls
+
+---
+
+### 4. Malware Persistence
+
+**Defense:**
+
+- Service audit
+- Process monitoring
+- Log analysis
+
+---
+
+## Architect Insight
+
+Security controls must be layered:
+
+- Identity (users)
+- Network (firewall)
+- Host (services, processes)
+- Visibility (logs)
+
+---
+
+## Key Takeaway
+
+Threats are predictable. Defenses must be intentional.
