@@ -1,0 +1,101 @@
+# Week 1 – Linux System Hardening Review
+
+## System Overview
+
+- OS: Ubuntu 22.04 LTS
+- Access: SSH (key-based)
+- Firewall: Enabled (default deny)
+
+---
+
+## Access Control
+
+- Root login disabled
+- Password authentication disabled
+- Role-based users and groups applied
+
+### Why this matters
+
+Prevents brute-force attacks and limits privilege escalation.
+
+---
+
+## Service Management
+
+- SSH enabled and monitored
+- Unnecessary services disabled
+
+### Why this matters
+
+Reduces attack surface and improves availability control.
+
+---
+
+## Network Exposure
+
+- Firewall allows only required inbound traffic
+- No unnecessary open ports
+
+### Why this matters
+
+Minimizes external attack vectors.
+
+---
+
+## Logging & Visibility
+
+- Authentication logs monitored
+- System logs available for incident response
+
+### Why this matters
+
+Enables detection and forensic analysis.
+
+---
+
+## Residual Risks
+
+- Kernel vulnerabilities
+- SSH key compromise
+- Misconfiguration over time
+
+---
+
+## Overall Security Posture
+
+This system is reasonably hardened for a small production workload, with layered defenses and minimal exposure.
+
+## Threat Model (Basic)
+
+### Threats Considered
+
+- SSH brute force
+- Unauthorized access
+- Service misuse
+- Network scanning
+
+### Mitigations Applied
+
+- SSH hardening
+- Firewall default deny
+- Role separation
+- Logging and monitoring
+
+### Tradeoffs
+
+- Increased setup complexity
+- Reduced convenience for administrators
+
+## Final Hardening Summary
+
+- SSH hardened (key-only, no root, limited retries)
+- Firewall enforcing least privilege
+- Unused services disabled
+- Users and privileges reviewed
+- Logs accessible and monitored
+
+---
+
+## Key Takeaway
+
+Security is not one control — it is the absence of unnecessary ones.
