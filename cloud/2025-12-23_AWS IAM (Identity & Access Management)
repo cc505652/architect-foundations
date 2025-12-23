@@ -1,0 +1,68 @@
+# Dec 23 – AWS IAM (Identity & Access Management)
+
+## What is IAM?
+
+IAM controls who can access AWS resources and what actions they can perform.
+
+## Core Concepts
+
+- User: human identity
+- Group: collection of users
+- Role: assumed identity with permissions
+- Policy: permission document
+
+## Why IAM is Critical
+
+Most cloud breaches happen due to IAM misconfigurations, not hacking.
+
+## IAM User Setup
+
+Created a non-root IAM user with read-only access.
+
+### Security Rationale
+
+- Reduces blast radius
+- Prevents accidental destructive actions
+
+## Identity in AWS
+
+### Root Account
+
+- Full control
+- Should never be used daily
+- Protected with MFA
+
+### IAM Users
+
+- Represent humans or services
+- Permissions are explicit
+
+## Users vs Roles
+
+Users:
+
+- Long-term credentials
+- For humans
+
+Roles:
+
+- Temporary credentials
+- For services and cross-account access
+
+## Why Roles Matter
+
+Roles avoid hardcoding credentials and reduce credential leakage risk.
+
+## Why This Matters
+
+Most cloud breaches are caused by identity misuse, not hacking.
+
+## Architect Insight
+
+In production, services should use IAM roles, not IAM users.
+
+## Architect Questions
+
+1. What happens if root credentials are compromised?
+2. Why is least privilege harder in cloud than on Linux?
+3. Why is IAM the first security boundary in AWS?
