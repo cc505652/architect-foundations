@@ -1,0 +1,56 @@
+# Dec 23 – AWS Foundations (Security First)
+
+## What is Cloud Computing?
+
+Cloud computing is on-demand access to compute, storage, and networking without owning physical infrastructure.
+
+## What AWS Is
+
+AWS is a collection of managed infrastructure services that abstract hardware while exposing control through APIs.
+
+## Why Cloud Exists
+
+- Elastic scaling
+- Pay-as-you-go
+- Global availability
+- Faster deployment
+
+## Shared Responsibility Model
+
+- AWS secures the cloud
+- Customer secures what’s in the cloud
+
+## Cloud vs On-Prem
+
+On-prem requires upfront cost and manual scaling.
+Cloud trades control for speed and flexibility.
+
+## AWS Global Infrastructure
+
+- Region: geographic area (e.g., ap-south-1)
+- Availability Zone (AZ): isolated data centers within a region
+- Edge Locations: content delivery (CloudFront)
+
+## Regions
+
+Geographically separate locations.
+Used for compliance, latency, and isolation.
+
+## Availability Zones (AZs)
+
+Multiple isolated data centers within a region.
+Used for high availability.
+
+## Edge Locations
+
+Used for content delivery (CDN).
+Not for running servers.
+
+## Why this matters
+
+Isolation between AZs enables high availability.
+
+### Architect thinking :
+
+- Why wouldn’t you deploy everything in one AZ?
+- Why might a company restrict regions?
