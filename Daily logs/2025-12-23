@@ -1,0 +1,28 @@
+# Daily Log — Dec 23
+
+## Focus
+
+AWS fundamentals and IAM security model.
+
+## Key Learnings
+
+- Cloud abstracts infrastructure
+- Regions and AZs enable availability
+- IAM is the primary cloud security boundary
+
+## What Could Go Wrong?
+
+- Root account misuse
+- Over-permissive IAM policies
+- Long-lived credentials leakage
+
+## How to Defend
+
+- Use IAM users with least privilege
+- Prefer roles over users
+- Enable MFA
+
+## Tradeoffs
+
+- Convenience vs security
+- Fine-grained IAM vs management complexity
