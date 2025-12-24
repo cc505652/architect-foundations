@@ -1,0 +1,81 @@
+# Dec 24 – AWS EC2 (Compute)
+
+## What is EC2?
+
+EC2 is a virtual server managed by AWS where the customer controls the OS, users, and applications.
+
+## What AWS Manages
+
+- Physical hardware
+- Hypervisor
+- Data center security
+
+## What I Manage
+
+- OS hardening
+- Users & SSH
+- Firewall (Security Groups)
+- Applications
+
+## Key Concepts
+
+- Instance: virtual server
+- AMI: machine image
+- Instance type: CPU/memory combo
+- Key pair: SSH authentication
+
+## Architect Insight
+
+EC2 is disposable. Design assuming instances will fail.
+
+### Step-by-step
+
+1. Go to **EC2 → Launch Instance**
+2. Name: `secure-linux-ec2`
+3. AMI: **Ubuntu 22.04 LTS**
+4. Instance type: `t2.micro`
+5. Key pair:
+    - Create new → `architect-key.pem`
+    - Download and store safely
+6. Network:
+    - Default VPC
+    - Public subnet
+    - Auto-assign public IP: **Enable**
+
+---
+
+### SECURITY GROUP (THIS MATTERS)
+
+Create new security group:
+
+- Inbound:
+    - SSH (22) → **Your IP only**
+- Outbound:
+    - Allow all (default)
+
+Launch instance.
+
+## 🛠️ CONNECT TO EC2
+
+```bash
+chmod 400 architect-key.pem
+ssh -i architect-key.pem ubuntu@<EC2_PUBLIC_IP>
+```
+
+If you get in → success.
+
+## EC2 Deployment
+
+Launched Ubuntu EC2 with key-based SSH.
+
+## Secure Access Design
+
+- SSH allowed only from my IP
+- No other ports exposed
+- Key-based authentication only
+
+## Mapping to Linux
+
+- Security Group = cloud firewall
+- Key pair = SSH key authentication
+- Public IP = internet exposure
