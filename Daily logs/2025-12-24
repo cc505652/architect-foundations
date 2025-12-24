@@ -1,0 +1,28 @@
+# Daily Log — Dec 24
+
+## Focus
+
+EC2 deployment and Security Group design.
+
+## Key Learnings
+
+- Compute is easy, security is intentional
+- SSH access must be tightly controlled
+- Security Groups act as cloud firewalls
+
+## What Could Go Wrong?
+
+- SSH exposed to the internet
+- Key leakage
+- Overly permissive security groups
+
+## How to Defend
+
+- IP-restricted rules
+- Key rotation
+- Least privilege networking
+
+## Tradeoffs
+
+- Accessibility vs security
+- Simplicity vs control
