@@ -1,0 +1,31 @@
+# Dec 24 – Security Groups
+
+## What is a Security Group?
+
+A stateful virtual firewall controlling inbound and outbound traffic.
+
+## Key Properties
+
+- Stateful
+- Attached to ENIs
+- Allow rules only
+
+## Why Security Groups Matter
+
+They are the first line of cloud defense.
+
+## Security Group vs ufw
+
+| Aspect | Security Group | ufw |
+| --- | --- | --- |
+| Location | AWS edge | OS level |
+| Type | Stateful | Stateful |
+| Default | Deny inbound | Deny inbound |
+| Scope | Instance | Host |
+
+## Architect Insight
+
+Security Groups replace traditional host firewalls at scale.
+
+Cloud firewalls protect before traffic reaches the OS.
+OS firewalls protect after traffic reaches the host.
