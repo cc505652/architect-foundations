@@ -1,0 +1,75 @@
+Dec 25 – Amazon S3 Basics & Secure Permissions
+
+## Objective
+
+Understand how object storage works in AWS and how access to data is controlled using identity and policies.
+
+---
+
+## What S3 Is
+
+Amazon S3 is an object storage service designed for durability, scalability, and global access.
+
+It does NOT behave like a traditional filesystem.
+
+---
+
+## Create an S3 Bucket
+
+### Steps
+
+- Go to S3 → Create bucket
+- Bucket name: dec-secure-bucket-<unique-id>
+- Region: same as EC2
+- Block ALL public access: ENABLED
+- Bucket versioning: Disabled (for now)
+
+**Why:**
+
+- Buckets are globally unique
+- Public access is the #1 cause of S3 data leaks
+
+---
+
+## Upload a Test Object
+
+Upload a file:
+
+- `test.txt`
+- Content: `S3 access test`
+
+---
+
+## Access Test (Expected to FAIL)
+
+Try accessing the object using its URL.
+
+**Expected result:** Access denied
+
+**Why:**
+
+S3 is private by default when public access is blocked.
+
+---
+
+## S3 Permission Layers
+
+### 1. Bucket Policy
+
+Resource-based policy applied to the bucket.
+
+### 2. IAM Policy
+
+Identity-based policy applied to users or roles.
+
+### 3. ACLs (Legacy)
+
+Fine-grained, mostly avoided today.
+
+---
+
+## Key Security Takeaways
+
+- Never make buckets public unless explicitly required
+- Prefer IAM roles over public or user-based access
+- S3 breaches are usually configuration errors, not exploits
