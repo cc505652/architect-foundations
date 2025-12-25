@@ -1,0 +1,119 @@
+# Dec 25 – IAM Roles for EC2 (Secure Access Pattern)
+
+## Objective
+
+Allow an EC2 instance to access S3 securely without storing credentials on the server.
+
+---
+
+## Why IAM Roles Exist
+
+Hardcoding access keys on servers leads to:
+
+- Key leakage
+- No rotation
+- Full account compromise
+
+IAM Roles solve this by providing:
+
+- Temporary credentials
+- Automatic rotation
+- Scoped permissions
+
+---
+
+## Create IAM Policy (Least Privilege)
+
+### Steps
+
+IAM → Policies → Create policy
+
+Policy name: `EC2-S3-ReadOnly-Policy`
+
+Policy JSON:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::dec-secure-bucket-*",
+        "arn:aws:s3:::dec-secure-bucket-*/*"
+      ]
+    }
+  ]
+}
+
+```
+
+**Why:**
+
+- Read-only access
+- Limited to one bucket
+- Least privilege by design
+
+## Create IAM Role for EC2
+
+### Steps
+
+IAM → Roles → Create role
+
+- Trusted entity: AWS service
+- Use case: EC2
+- Attach policy: `EC2-S3-ReadOnly-Policy`
+- Role name: `EC2-S3-ReadOnly-Role`
+
+---
+
+## Attach Role to EC2
+
+EC2 → Instance → Actions → Security → Modify IAM role
+
+Attach: `EC2-S3-ReadOnly-Role`
+
+---
+
+## Test Access from EC2
+
+SSH into EC2:
+
+```bash
+aws s3ls
+aws s3ls s3://dec-secure-bucket-<unique-id>
+```
+
+If AWS CLI isn’t installed:
+
+```bash
+sudo apt update
+sudo apt install awscli -y
+```
+
+**Expected result:**
+
+- Bucket listing succeeds
+- No access keys configured
+
+Verify:
+
+```bash
+env | grep AWS
+```
+
+| On-Prem | AWS |
+| --- | --- |
+| Service account | IAM Role |
+| File permissions | IAM Policy |
+| Secrets in config | Temporary credentials |
+
+## Key Takeaways
+
+- IAM Roles eliminate secret management on servers
+- Policies should always be scoped
+- Identity replaces network trust in cloud
