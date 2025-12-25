@@ -1,0 +1,28 @@
+# Daily Log — Dec 25
+
+## Focus
+
+S3 security and IAM role-based access from EC2.
+
+## Key Learnings
+
+- Data security is permission-driven
+- IAM roles eliminate static credentials
+- S3 misconfigurations are a major breach vector
+
+## What Could Go Wrong?
+
+- Public bucket exposure
+- Over-permissive IAM policies
+- Role misuse by compromised instances
+
+## How to Defend
+
+- Block public access
+- Least privilege roles
+- Monitor access patterns
+
+## Tradeoffs
+
+- Ease of access vs strict permissions
+- Simplicity vs granular policies
