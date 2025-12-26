@@ -1,0 +1,111 @@
+# Dec 26 — Public vs Private Subnets
+
+## Public Subnet
+
+A subnet with a route to an Internet Gateway.
+
+Typical resources:
+
+- Load balancers
+- Bastion hosts
+- Public-facing services
+
+## Private Subnet
+
+A subnet without direct internet access.
+
+Typical resources:
+
+- Application servers
+- Databases
+
+## HANDS-ON: CREATE A CUSTOM VPC
+
+### Step 1: Create VPC
+
+AWS Console → VPC → Create VPC
+
+- Name: `dec-vpc`
+- IPv4 CIDR: `10.0.0.0/16`
+- No IPv6 (for now)
+
+---
+
+### Step 2: Create Subnets
+
+Create **two subnets**:
+
+**Public Subnet**
+
+- Name: `public-subnet-1`
+- CIDR: `10.0.1.0/24`
+- AZ: any
+
+**Private Subnet**
+
+- Name: `private-subnet-1`
+- CIDR: `10.0.2.0/24`
+- AZ: same AZ
+
+---
+
+### Step 3: Internet Gateway
+
+- Create Internet Gateway: `dec-igw`
+- Attach to `dec-vpc`
+
+---
+
+### Step 4: Route Tables
+
+**Public Route Table**
+
+- Destination: `0.0.0.0/0`
+- Target: Internet Gateway
+
+Associate **public subnet** only.
+
+**Private Route Table**
+
+- No internet route
+- Associate **private subnet**
+
+## Why This Separation Matters
+
+- Reduces attack surface
+- Limits blast radius
+- Enforces least exposure
+
+## Security Reasoning
+
+Why EC2 should usually be in private subnet:
+
+- No direct exposure
+- Controlled access via load balancer or bastion
+
+Why databases must be private:
+
+- Data protection
+- No inbound internet traffic
+
+## Routing Logic
+
+- Route table defines where traffic goes
+- 0.0.0.0/0 → Internet Gateway = public subnet
+- 0.0.0.0/0 → NAT Gateway = private subnet outbound only
+
+## Cloud Mapping
+
+Internet Gateway = inbound + outbound
+NAT Gateway = outbound only
+
+## Architect Questions
+
+1. What makes a subnet public?
+2. Can a private subnet ever access the internet?
+3. Why not put everything in one subnet?
+4. What would break if the IGW is removed?
+
+## Architect Insight
+
+Most security issues occur due to incorrect routing, not service bugs.
