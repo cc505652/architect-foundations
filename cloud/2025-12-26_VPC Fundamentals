@@ -1,0 +1,37 @@
+# Dec 26 – VPC Fundamentals
+
+## What a VPC Is
+
+A Virtual Private Cloud is a logically isolated network inside AWS where I control IP addressing, routing, and access.
+
+It is the cloud equivalent of an on-prem data center network.
+
+## Why VPC Exists
+
+- Network isolation
+- Custom IP addressing
+- Security boundaries
+
+## What Lives Inside a VPC
+
+- Subnets
+- Route tables
+- Internet Gateway
+- NAT Gateway
+- Security Groups
+- Network ACLs
+
+## CIDR Planning
+
+VPC CIDR:
+10.0.0.0/16
+
+Why:
+
+- Large private address space
+- Room for growth
+- Non-overlapping with typical home networks
+
+## Architect Insight
+
+A VPC is the foundation of cloud security and traffic control.
