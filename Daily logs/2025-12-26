@@ -1,0 +1,28 @@
+# Daily Log — Dec 26
+
+## Focus
+
+VPC fundamentals and public vs private subnet design.
+
+## Key Learnings
+
+- VPC is a security boundary
+- Subnets control exposure
+- Routing defines reachability
+
+## What Could Go Wrong?
+
+- Placing sensitive resources in public subnets
+- Incorrect route tables exposing instances
+- Over-reliance on security groups alone
+
+## How to Defend
+
+- Strict subnet separation
+- Intentional routing
+- Defense in depth (subnets + SGs)
+
+## Tradeoffs
+
+- Simplicity vs security
+- Cost vs isolation
