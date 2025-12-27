@@ -1,0 +1,122 @@
+## Problem Statement
+
+Private subnet resources need internet access for:
+
+- OS updates
+- Package downloads
+- External APIs
+
+But they must NOT be reachable from the internet.
+
+## What NAT Gateway Does
+
+Allows private subnet resources to initiate outbound internet traffic without being reachable inbound.
+
+## Why NAT Lives in Public Subnet
+
+It needs internet access via IGW to forward traffic.
+
+## Security Benefit
+
+- Private resources stay hidden
+- Controlled egress only
+
+## Architect Insight
+
+NAT is about outbound reachability, not inbound access.
+
+## Key Rule
+
+Inbound from internet ❌
+
+Outbound to internet ✅
+
+### Step 1: Elastic IP
+
+VPC → Elastic IPs → Allocate Elastic IP
+
+**Why:**
+
+NAT needs a stable public IP.
+
+---
+
+### Step 2: Create NAT Gateway
+
+VPC → NAT Gateways → Create
+
+- Name: `dec-nat-gateway`
+- Subnet: **public-subnet-1**
+- Elastic IP: attach allocated EIP
+
+Wait until state = **Available**
+
+---
+
+### Step 3: Update Private Route Table
+
+VPC → Route Tables → *Private Route Table*
+
+Add route:
+
+- Destination: `0.0.0.0/0`
+- Target: NAT Gateway
+
+❌ Do NOT associate NAT with public subnet routes.
+
+## TEST: PRIVATE SUBNET INTERNET ACCESS
+
+### Step 1: Launch EC2 in Private Subnet
+
+- Same AMI (Ubuntu 22.04)
+- No public IP
+- Subnet: `private-subnet-1`
+- Security Group: allow SSH **only from within VPC**
+
+You **will not SSH** into this directly.
+
+---
+
+### Step 2: Bastion Logic (Conceptual)
+
+Public EC2 → SSH → Private EC2
+
+You don’t need to fully implement bastion today.
+
+Just understand the flow.
+
+---
+
+### Step 3: Verify Outbound Access
+
+From **private EC2** (via bastion or SSM if available):
+
+```bash
+sudo apt update
+```
+
+If it works:
+
+- NAT is correct
+- Routing is correct
+- Subnet isolation is intact
+
+## NAT Flow
+
+Private EC2 → NAT Gateway → Internet
+
+Internet → NAT Gateway → Private EC2 (BLOCKED)
+
+## Why This Is Secure
+
+- No inbound route to private subnet
+- NAT tracks outbound connections only
+- Attackers cannot initiate connections
+
+## Architect Questions
+
+1. Why must NAT be in a public subnet?
+2. Why does a private subnet not need a public IP?
+3. Why is NAT not a firewall?
+4. What breaks if NAT goes down?
+5. Why is this design used for databases?
