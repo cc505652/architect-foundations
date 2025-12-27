@@ -1,0 +1,28 @@
+# Daily Log — Dec 27
+
+## Focus
+
+Custom VPC build with public/private subnets and NAT Gateway.
+
+## Key Learnings
+
+- VPC defines security boundaries
+- Routing controls reachability
+- NAT enables safe outbound access
+
+## What Could Go Wrong?
+
+- Exposing private subnets via IGW
+- Misconfigured route tables
+- Treating NAT as a firewall
+
+## How to Defend
+
+- Strict routing separation
+- Least exposure
+- Review routes regularly
+
+## Tradeoffs
+
+- NAT cost vs security
+- Simplicity vs fine-grained control
