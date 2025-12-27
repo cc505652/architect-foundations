@@ -1,0 +1,85 @@
+## Design Goal
+
+Create a secure network with:
+
+- Public subnet for internet-facing components
+- Private subnet for internal compute
+- Controlled outbound access from private subnet
+
+## CIDR Plan
+
+- VPC: 10.0.0.0/16
+- Public Subnet: 10.0.1.0/24
+- Private Subnet: 10.0.2.0/24
+
+## Why This Design
+
+- Clear separation of exposure
+- Reduced blast radius
+- Matches real production layouts
+
+### 🛠️ STEP 1: CREATE VPC
+
+AWS Console → VPC → Create VPC
+
+- Name: `architect-vpc`
+- IPv4 CIDR: `10.0.0.0/16`
+- No IPv6
+
+Create.
+
+---
+
+### 🛠️ STEP 2: CREATE SUBNETS
+
+**Public Subnet**
+
+- Name: `public-subnet`
+- CIDR: `10.0.1.0/24`
+- AZ: any
+
+**Private Subnet**
+
+- Name: `private-subnet`
+- CIDR: `10.0.2.0/24`
+- Same AZ (for simplicity)
+
+---
+
+### 🛠️ STEP 3: INTERNET GATEWAY
+
+- Create IGW: `architect-igw`
+- Attach to `architect-vpc`
+
+---
+
+### 🛠️ STEP 4: ROUTE TABLES
+
+**Public Route Table**
+
+- Create route table: `public-rt`
+- Add route:
+    - `0.0.0.0/0` → Internet Gateway
+- Associate with **public-subnet**
+
+Do NOT touch private yet.
+
+---
+
+## 🧠 THINK (PAUSE HERE)
+
+Ask yourself:
+
+- Why does only the public subnet talk to IGW?
+- What happens if private subnet had this route?
+
+## Build Summary
+
+- VPC created with /16 CIDR
+- Public and private subnets created
+- Internet Gateway attached
+- Public route table configured
+
+## Security Impact
+
+Only explicitly routed subnets can access the internet.
